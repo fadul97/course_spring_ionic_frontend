@@ -11,6 +11,11 @@ export class StorageService{
         if(usr == null){
             return null;
         } else{
+            if(usr.charAt(178) == ''){
+                console.log(usr);
+                usr = usr.slice(0, 178) + usr.slice(179);
+                console.log(usr);
+            }
             return JSON.parse(usr);
         }
     }

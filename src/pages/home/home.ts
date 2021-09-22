@@ -28,7 +28,9 @@ export class HomePage {
       this.auth.successfulLogin(response.headers.get('Authorization'));
       this.navCtrl.setRoot('CategoriesPage');
     },
-    error => {});
+    error => {
+      console.log(error);
+    });
   }
 
   ionViewWillEnter(){

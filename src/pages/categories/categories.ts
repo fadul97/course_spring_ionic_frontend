@@ -4,12 +4,6 @@ import { API_CONFIG } from '../../config/api.config';
 import { CategorieDTO } from '../../models/categories.dto';
 import { CategorieService } from '../../services/domain/categorie.service';
 
-/**
- * Generated class for the CategoriesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -37,6 +31,10 @@ export class CategoriesPage {
         console.log(error);
         
       });
+  }
+
+  showProducts(){
+    this.navCtrl.push('ProductsPage');
   }
 
 }

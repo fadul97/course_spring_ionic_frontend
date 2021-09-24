@@ -43,6 +43,10 @@ export class ProductsPage {
           console.log(error);
         });
     }
-  }  
+  }
+
+  showDetail(){
+    this.navCtrl.push('ProductDetailPage');
+  }
 
 }

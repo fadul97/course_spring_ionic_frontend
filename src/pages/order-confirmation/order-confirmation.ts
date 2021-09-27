@@ -8,12 +8,6 @@ import { CartService } from '../../services/domain/cart.service';
 import { ClientService } from '../../services/domain/client.service';
 import { PedidoService } from '../../services/domain/pedido.service';
 
-/**
- * Generated class for the OrderConfirmationPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -26,6 +20,7 @@ export class OrderConfirmationPage {
   cartItems: CartItem[];
   client: ClientDTO;
   address: AddressDTO;
+  codpedido: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -63,7 +58,7 @@ export class OrderConfirmationPage {
     this.pedidoService.insert(this.pedido)
       .subscribe(response => {
         this.cartService.createOrClearCart();
-        console.log(response.headers.get('location'));
+        this.codpedido= this.extractId(response.headers.get('location'));
       },
       error => {
         if (error.status == 403) {
@@ -72,8 +67,17 @@ export class OrderConfirmationPage {
       });
   }
 
+  home() {
+    this.navCtrl.setRoot('CategoriesPage');
+  }
+
   back() {
     this.navCtrl.setRoot('CartPage');
+  }
+
+  private extractId(location : string) : string {
+    let position = location.lastIndexOf('/');
+    return location.substring(position + 1, location.length);
   }
 
 }

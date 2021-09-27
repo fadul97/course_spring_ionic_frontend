@@ -35,7 +35,7 @@ export class PaymentPage {
   // Changing installments on Card Payment also change on Bank Billet Payment -- NOT FIXED
   nextPage() {
     this.pedido.payment = this.formGroup.value;
-    console.log(this.pedido);
+    this.navCtrl.setRoot('OrderConfirmationPage', {pedido: this.pedido});
   }
 
 }

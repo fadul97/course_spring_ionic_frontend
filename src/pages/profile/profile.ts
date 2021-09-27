@@ -1,4 +1,5 @@
 import { Component } from '@angular//core';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { API_CONFIG } from '../../config/api.config';
 import { ClientDTO } from '../../models/cliente.dto';
@@ -14,12 +15,15 @@ import { StorageService } from '../../services/storage.service';
 export class ProfilePage {
 
   client: ClientDTO;
+  picture: string;
+  cameraOn: boolean = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: StorageService,
-    public clientService: ClientService) {
+    public clientService: ClientService,
+    public camera: Camera) {
   }
 
   ionViewDidLoad() {
@@ -46,6 +50,30 @@ export class ProfilePage {
         this.client.imageUrl = `${API_CONFIG.bucketBaseUrl}/cp${this.client.id}.jpg`;
       },
       error => {});
+  }
+
+  
+  getCameraPicture() {
+
+    console.log("Simulating... Taking picture...");
+    // I don't have a camera to test it
+
+    /*
+    this.cameraOn = true;
+
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.PNG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+     this.picture = 'data:image/png;base64,' + imageData;
+     this.cameraOn = false;
+    }, (err) => {
+    });
+    */
   }
 
 }
